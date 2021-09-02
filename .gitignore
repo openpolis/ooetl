@@ -1,0 +1,15 @@
+__pycache__/
+.git
+.idea
+.python-version
+.DS_Store
+.coverage
+flake8stats.txt
+coverage.xml
+htmlcov/
+junit.xml
+coverage-badge.svg
+flake8-badge.svg
+tests-badge.svg
+dist
+data
