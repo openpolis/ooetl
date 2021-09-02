@@ -22,8 +22,8 @@ Python versions from 3.7.1 are supported.
 
 The package is hosted on pypi, and can be installed, for example using pip:
 
-    pip install ooetl[all]
-    pip install ooetl[elastic]
+    pip install --upgrade "ooetl[all]"
+    pip install "ooetl[elastic]==1.1.2"
 
 or poetry:
 
