@@ -65,7 +65,7 @@ class ETL(object):
             self.logger = logger
             self.logger.setLevel(log_level)
 
-        # opdmetl ETL subclasses are instantiated without
+        # ooetl ETL subclasses are instantiated without
         # the transformation arguments, so this defaults to
         # the DummyTransformation, in order to be back-compatible
         # the transform method override will still work
@@ -143,7 +143,7 @@ class ETL(object):
         as single `DataFrame` or as a dictionary of multiple
         `DataFrame`, with defined labels.
 
-        Version 1.0 opdmetl ETL subclasses, directly overriding the transform method
+        Version 1.0 ooetl ETL subclasses, directly overriding the transform method
         are back-compatible
 
         Returns:

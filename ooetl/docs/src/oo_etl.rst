@@ -3,14 +3,14 @@ API
 Documentation of the `ooetl` module and its submodules:
 `extractors`, `loaders`, and `utils`.
 
-opdmetl
+ooetl
 ------
 .. automodule:: ooetl
     :members:
     :undoc-members:
     :show-inheritance:
 
-opdmetl.extractors
+ooetl.extractors
 -----------------
 .. automodule:: ooetl.extractors
     :members:
@@ -18,7 +18,7 @@ opdmetl.extractors
     :show-inheritance:
 
 
-opdmetl.loaders
+ooetl.loaders
 --------------
 .. automodule:: ooetl.loaders
     :members:

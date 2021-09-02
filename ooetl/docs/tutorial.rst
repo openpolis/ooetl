@@ -1,23 +1,23 @@
 Tutorial
 ========
 
-This is a quick tutorial on how to use the `opdmetl` module in order to fetch
+This is a quick tutorial on how to use the `ooetl` module in order to fetch
 data from a SQL source and store them into a CSV destination.
 
-The ETL process is performed by invoking the `etl()` method on a `opdmetl.ETL` instance.
-The `etl()` method is a shortcut to the sequence `opdmetl.ETL::extract().transform().load()`,
-which is possible, as each method returns a pointer to the `opdmetl.ETL` instance.
+The ETL process is performed by invoking the `etl()` method on a `ooetl.ETL` instance.
+The `etl()` method is a shortcut to the sequence `ooetl.ETL::extract().transform().load()`,
+which is possible, as each method returns a pointer to the `ooetl.ETL` instance.
 
-When the `opdmetl.ETL` instance invokes the `opdmetl.ETL::extract()` method, it invokes the corresponging
-`opdmetl.Extractor::extract()` method of the *extractor*. The method extracts the data from the source
-into the `opdmetl.ETL::original_data` attribute of the opdmetl.`ETL` instance.
+When the `ooetl.ETL` instance invokes the `ooetl.ETL::extract()` method, it invokes the corresponging
+`ooetl.Extractor::extract()` method of the *extractor*. The method extracts the data from the source
+into the `ooetl.ETL::original_data` attribute of the ooetl.`ETL` instance.
 
-The `opdmetl.ETL::transform()` method is overridden in the instance and may be used to apply
+The `ooetl.ETL::transform()` method is overridden in the instance and may be used to apply
 custom data transformation, before the loading phase.
-The data from `opdmetl.ETL::original_data` are then transformed into `opdmetl.ETL::processed_data`.
+The data from `ooetl.ETL::original_data` are then transformed into `ooetl.ETL::processed_data`.
 
-The `opdmetl.ETL::load()` method invokes the `opdmetl.Loader::load()` method storing the data from
-`opdmetl.ETL::processed_data` into the defined destination.
+The `ooetl.ETL::load()` method invokes the `ooetl.Loader::load()` method storing the data from
+`ooetl.ETL::processed_data` into the defined destination.
 
 The package provides a series of simple Extractors and Loaders, derived from common abstract classes.
 
@@ -34,15 +34,15 @@ Loaders:
  - CSVLoader(Loader) - loads file into a CSV
  - ESLoader(Loader) - loads file into an ES instance
 
-The `opdmetl.ETL` abstract class is defined in the `__init__.py` file of the `opdmetl` package.
+The `ooetl.ETL` abstract class is defined in the `__init__.py` file of the `ooetl` package.
 
 As an example, here is how to extract data from a sql source into a CSV file
 
 .. code-block:: python
 
-    from opdmetl import ETL
-    from opdmetl.extractors import SqlExtractor
-    from opdmetl.loaders import CSVLoader
+    from ooetl import ETL
+    from ooetl.extractors import SqlExtractor
+    from ooetl.loaders import CSVLoader
 
     class MySqlETL(ETL):
 
@@ -68,8 +68,8 @@ As an example, here is how to extract data from a sql source into a CSV file
     etl.etl()
 
 
-Extractors (and Loaders) may be easily extended within the projects using the `opdmetl` package.
-As an example, consider the following example, extending the `opdmetl.HTMLParserExtractor`:
+Extractors (and Loaders) may be easily extended within the projects using the `ooetl` package.
+As an example, consider the following example, extending the `ooetl.HTMLParserExtractor`:
 
 .. code-block:: python
 
