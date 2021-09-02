@@ -17,6 +17,7 @@ from ooetl.loaders import CSVLoader
 logging.basicConfig(format='%(levelname)s: %(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+
 class GovernoExtractor(HTMLParserExtractor):
 
     def parse(self, html_content):
@@ -30,8 +31,7 @@ class GovernoExtractor(HTMLParserExtractor):
             item_par = CSSSelector('div.content div.field')(item_tree)[0]
             item_charge = CSSSelector('blockquote p')(item_par)[0].text_content().strip()
             item_descr = " ".join([
-              e.text_content() for e in CSSSelector('p')(item_par)[1:] if\
-                 e.text_content() is not None
+              e.text_content() for e in CSSSelector('p')(item_par)[1:] if e.text_content() is not None
             ])
             items.append({
                 'nome': item_name,
@@ -44,6 +44,7 @@ class GovernoExtractor(HTMLParserExtractor):
                 self.etl.logger.info(item_name)
 
         return items
+
 
 ETL(
     extractor=GovernoExtractor("https://www.governo.it/it/ministri-e-sottosegretari"),

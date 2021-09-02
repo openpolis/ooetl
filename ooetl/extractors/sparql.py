@@ -1,5 +1,10 @@
 import pandas as pd
 
+try:
+    from SPARQLWrapper import SPARQLWrapper
+except ImportError as error:
+    print(error.__class__.__name__ + ": " + error)
+
 from ooetl.extractors import RemoteExtractor
 
 
@@ -28,5 +33,5 @@ class SparqlExtractor(RemoteExtractor):
         # so that it can be directly used to create a DataFrame
         res = []
         for r in results["results"]["bindings"]:
-            res.append(dict((l, r[l]["value"]) for l in r.keys()))
+            res.append(dict((k, r[k]["value"]) for k in r.keys()))
         return pd.DataFrame(res)

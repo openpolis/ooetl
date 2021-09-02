@@ -3,9 +3,9 @@
 try:
     import django.test
 except ImportError as error:
-    print(error.__class__.__name__ + ": " + error.message)
+    print(error.__class__.__name__ + ": " + error)
 
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 
 class ETLTest(django.test.TestCase):
@@ -13,7 +13,7 @@ class ETLTest(django.test.TestCase):
     @classmethod
     def setUpClass(cls):
         super(ETLTest, cls).setUpClass()
-        cls.mock_get_patcher = patch('opdmetl.extractors.requests.get')
+        cls.mock_get_patcher = patch('ooetl.extractors.requests.get')
         cls.mock_get = cls.mock_get_patcher.start()
 
     @classmethod
