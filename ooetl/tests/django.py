@@ -3,7 +3,7 @@
 try:
     import django.test
 except ImportError as error:
-    print(error.__class__.__name__ + ": " + error)
+    print(error.__class__.__name__ + ": " + error.name)
 
 from unittest.mock import patch
 

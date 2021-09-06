@@ -29,7 +29,7 @@ try:
     from elasticsearch import Elasticsearch
     from elasticsearch.helpers import streaming_bulk
 except ImportError as error:
-    print(error.__class__.__name__ + ": " + error)
+    print(error.__class__.__name__ + ": " + error.name)
 
 import pandas as pd
 

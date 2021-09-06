@@ -3,7 +3,7 @@ import pandas as pd
 try:
     from SPARQLWrapper import SPARQLWrapper
 except ImportError as error:
-    print(error.__class__.__name__ + ": " + error)
+    print(error.__class__.__name__ + ": " + error.name)
 
 from ooetl.extractors import RemoteExtractor
 
