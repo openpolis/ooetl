@@ -25,8 +25,12 @@ import os
 import resource
 import time
 
-from elasticsearch import Elasticsearch
-from elasticsearch.helpers import streaming_bulk
+try:
+    from elasticsearch import Elasticsearch
+    from elasticsearch.helpers import streaming_bulk
+except ImportError as error:
+    print(error.__class__.__name__ + ": " + error)
+
 import pandas as pd
 
 __author__ = "guglielmo"
