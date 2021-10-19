@@ -3,7 +3,7 @@ import logging
 
 from .transformations import DummyTransformation
 
-__version__ = '1.1.6'
+__version__ = '1.1.7'
 __description__ = "A framework to write ETL processes at the Openpolis Foundation."
 
 """A framework to write ETL processes at the Openpolis Foundation.
