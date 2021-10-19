@@ -423,7 +423,6 @@ class XLSExtractor(Extractor):
 
         df = pd.read_excel(
             io=self.io,
-            sep=self.sheet_name,
             skiprows=self.skiprows,
             skipfooter=self.skipfooter,
             sheet_name=self.sheet_name,
