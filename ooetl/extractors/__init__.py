@@ -343,7 +343,7 @@ class SqlExtractor(Extractor):
 
 class XLSExtractor(Extractor):
     """:class:`Extractor`  for remote data, exposed in an
-    uncompressed csv format
+    xls format
     """
 
     def __init__(self, io, **kwargs):

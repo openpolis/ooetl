@@ -28,6 +28,8 @@ Extractors:
  - HTMLParserExtractor(RemoteExtractor) - extracts data from a remote HTML page (requires parse override)
  - SparqlExtractor(RemoteExtractor) - extracts data from a remote SPARQL endpoint
  - SqlExtractor(Extractor) - extracts data from a RDBMS
+ - XSLExtractor - extracts data from a remote Excel file
+ - ZIPXLSExctractor - extracts data from an excel file within a remote zipped archive
 
 Loaders:
 
