@@ -14,7 +14,7 @@ python call.
 """
 import logging
 
-from io import BytesIO as _io
+from io import BytesIO as _io  # noqa
 
 import zipfile
 from abc import ABCMeta, abstractmethod
@@ -435,6 +435,56 @@ class XLSExtractor(Extractor):
         )
 
         return df
+
+
+class ZIPXLSExtractor(XLSExtractor):
+    """:class:`Extractor` for remote data, exposed in compressed xls files
+    """
+
+    def __init__(self, io, xls_filepath, **kwargs):
+        """Constructor method
+
+        :param source: the source URL of the zipped file
+        :param xls_filepath: the path of the excel file to extract
+        :param kwargs: kwargs used by XLSExtractor and ``verify_tls``,
+            used to avoid https errors due to TLS verification failures
+        """
+        self.verify_tls = kwargs.pop('verify_tls', True)
+        self.xls_filepath = xls_filepath
+        super().__init__(io, **kwargs)
+
+    def extract(self, **kwargs):
+        """Extracts data from remote, zipped xls source
+
+        Args:
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            :class:`pandas.DataFrame`: The dataframe containing extracted items
+        """
+        r = requests.get(self.io, verify=self.verify_tls)
+        z = zipfile.ZipFile(_io(r.content))
+        try:
+            z_filename = next(
+                f.filename for f in z.filelist if self.xls_filepath in f.filename
+            )
+        except StopIteration:
+            raise Exception(f"Could not find file {self.xls_filepath} in zipped file from {self.io}")
+        else:
+            df = pd.read_excel(
+                io=z.open(z_filename),
+                skiprows=self.skiprows,
+                skipfooter=self.skipfooter,
+                sheet_name=self.sheet_name,
+                header=self.header,
+                dtype=self.dtype,
+                converters=self.converters,
+                na_filter=self.na_filter,
+                na_values=self.na_values,
+                keep_default_na=self.keep_default_na,
+            )
+
+            return df
 
 
 class FakeExtractor(Extractor):
