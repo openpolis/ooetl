@@ -340,6 +340,8 @@ class DjangoUpdateOrCreateLoader(Loader):
         super().__init__()
         self.django_model = django_model
         self.fields_to_update = fields_to_update
+        self.n_created = 0
+        self.n_updated = 0
 
     def load(self, **kwargs):
         self.logger.info("Loading data using Django ORM...")
@@ -356,12 +358,12 @@ class DjangoUpdateOrCreateLoader(Loader):
             c = c + (1 if created else 0)
 
         table = self.django_model._meta.db_table
-        n_created = c
-        n_updated = len(records) - c
-        if n_created > 0:
-            self.logger.info("Created {0} records into {1} table.".format(n_created, table))
-        if n_updated > 0:
-            self.logger.info("Updated {0} records into {1} table.".format(n_updated, table))
+        self.n_created = c
+        self.n_updated = len(records) - c
+        if self.n_created > 0:
+            self.logger.info("Created {0} records into {1} table.".format(self.n_created, table))
+        if self.n_updated > 0:
+            self.logger.info("Updated {0} records into {1} table.".format(self.n_updated, table))
 
 
 class LoaderException(Exception):
