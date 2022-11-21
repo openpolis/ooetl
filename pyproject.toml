@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ooetl"
-version = "1.2.2"
+version = "1.2.3"
 description = "Minimal opinionated object oriented ETL framework"
 authors = ["guglielmo <guglielmo@openpolis.it>"]
 readme = "README.md"
